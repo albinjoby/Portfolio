@@ -1,7 +1,6 @@
 import { Card } from "@/components/Card";
 import mapImage from "@/assets/images/map2.png";
 import { SectionHeader } from "@/components/SectionHeader";
-import StarIcon from "@/assets/icons/star.svg";
 import bookImage from "@/assets/images/book-cover.png";
 import Image from "next/image";
 import JavascriptIcon from "@/assets/icons/square-js.svg";
@@ -12,7 +11,6 @@ import ChromeIcon from "@/assets/icons/chrome.svg";
 import GithubIcon from "@/assets/icons/github.svg";
 import smileMemoji from "@/assets/images/me.png";
 import { TechIcon } from "@/components/TechIcon";
-import { title } from "process";
 import { CardHeader } from "@/components/CardHeader";
 import { ToolboxItems } from "@/components/ToolboxItems";
 
@@ -99,8 +97,8 @@ export const AboutSection = () => {
         />
         {/* -----------------Book Card -------------*/}
         <div className="mt-20 flex flex-col gap-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
-            <Card className="h-[320px] md:col-span-2">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
+            <Card className="h-[320px] md:col-span-2 lg:col-span-1">
               <CardHeader
                 title="My Reads"
                 description="Explore the books shaping my prespectives"
@@ -110,24 +108,25 @@ export const AboutSection = () => {
               </div>
             </Card>
             {/*------------ Tool Box ---------------*/}
-            <Card className="h-[320px] md:col-span-3">
+            <Card className="h-[320px] md:col-span-3 lg:col-span-2">
               <CardHeader
                 title="My Toolbox"
                 description="Explore the technologies and tools used to craft exceptional
                 digital experiences."
                 className=""
               />
-              <ToolboxItems items={toolboxItems} className="" />
+              <ToolboxItems items={toolboxItems} className="" key="toolbox-1" />
               <ToolboxItems
                 items={toolboxItems}
                 className="mt-6"
                 itemsWrapperClassName="-translate-x-1/2"
+                key="toolbox-2"
               />
             </Card>
           </div>
           {/* ---------------- Personal skills ----------------- */}
-          <div className="grid gap-8 grid-cols-1 md:grid-cols-5">
-            <Card className="h-[320px] p-0 flex flex-col md:col-span-3">
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-5 lg:grid-cols-3">
+            <Card className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2">
               <CardHeader
                 title="Beyond The Code"
                 description="Explore my interest and hobbies beyond the digital realme."
@@ -152,10 +151,10 @@ export const AboutSection = () => {
               </div>
             </Card>
             {/* -------------------Location Icon ---------------- */}
-            <Card className="h-[320px] p-0 relative md:col-span-2">
+            <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1">
               <Image
                 src={mapImage}
-                alt="map"
+                alt="Map showing my location"
                 className="h-full w-full object-cover object-center"
               />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-green-950/30">

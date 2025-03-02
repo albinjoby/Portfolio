@@ -54,7 +54,7 @@ export const TestimonialsSection = () => {
         <div className="mt-16 lg:mt-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.9),rgba(0,0,0,0.9),transparent)]">
           <div className="flex gap-8 flex-none">
             {testimonials.map((testimonial) => (
-              <Card key={testimonial.name} className="max-w-xs md:max-w-md md:p-8">
+              <Card key={testimonial.name} className="max-w-xs md:max-w-md p-6 md:p-8">
                 <div className="flex gap-4 items-center">
                   <div className="size-14 bg-gray-700 inline-flex items-center justify-center rounded-full flex-shrink-0">
                     <Image

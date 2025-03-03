@@ -1,3 +1,4 @@
+'use client'
 import { Card } from "@/components/Card";
 import mapImage from "@/assets/images/map2.png";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -9,15 +10,27 @@ import CSSIcon from "@/assets/icons/css3.svg";
 import ReactIcon from "@/assets/icons/react.svg";
 import ChromeIcon from "@/assets/icons/chrome.svg";
 import GithubIcon from "@/assets/icons/github.svg";
+import Tailwindicon from "@/assets/icons/tailwind.svg";
+import PythonIcon from "@/assets/icons/python.svg";
 import smileMemoji from "@/assets/images/me.png";
 import { TechIcon } from "@/components/TechIcon";
 import { CardHeader } from "@/components/CardHeader";
 import { ToolboxItems } from "@/components/ToolboxItems";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 
 const toolboxItems = [
   {
     title: "Javascript",
     iconType: JavascriptIcon,
+  },
+  {
+    title: "Python",
+    iconType: PythonIcon,
+  },
+  {
+    title: "Tailwind",
+    iconType: Tailwindicon,
   },
   {
     title: "HTML5",
@@ -43,7 +56,7 @@ const toolboxItems = [
 
 const hobbies = [
   {
-    title: "Drawing",
+    title: "Doodling",
     emoji: "✏️",
     left: "5%",
     top: "5%",
@@ -87,6 +100,7 @@ const hobbies = [
 ];
 
 export const AboutSection = () => {
+  const constraintRef = useRef(null);
   return (
     <div id="about" className="pb-20 lg:py-28">
       <div className="container">
@@ -103,9 +117,9 @@ export const AboutSection = () => {
                 title="My Reads"
                 description="Explore the books shaping my prespectives"
               />
-              <div className="w-40 mx-auto mt-2 md:mt-0">
-                <Image src={bookImage} alt="Atomic Habits" />
-              </div>
+                <div className="w-40 mx-auto mt-2 md:mt-0 transition-transform duration-300 hover:-translate-y-8">
+                <Image src={bookImage} alt="Atomic Habits" className=""/>
+                </div>
             </Card>
             {/*------------ Tool Box ---------------*/}
             <Card className="h-[320px] md:col-span-3 lg:col-span-2">
@@ -115,11 +129,16 @@ export const AboutSection = () => {
                 digital experiences."
                 className=""
               />
-              <ToolboxItems items={toolboxItems} className="" key="toolbox-1" />
+              <ToolboxItems
+                items={toolboxItems}
+                className=""
+                itemsWrapperClassName="animate-move-left [animation-duration:20s]"
+                key="toolbox-1"
+              />
               <ToolboxItems
                 items={toolboxItems}
                 className="mt-6"
-                itemsWrapperClassName="-translate-x-1/2"
+                itemsWrapperClassName="-translate-x-1/2 animate-move-right [animation-duration:20s]"
                 key="toolbox-2"
               />
             </Card>
@@ -132,21 +151,23 @@ export const AboutSection = () => {
                 description="Explore my interest and hobbies beyond the digital realme."
                 className="px-6 py-6"
               />
-              <div className="relative flex-1">
+              <div className="relative flex-1" ref={constraintRef}>
                 {hobbies.map((hobby) => (
-                  <div
+                  <motion.div
                     key={hobby.title}
                     className="inline-flex items-center gap-2 px-6 bg-gradient-to-r from-emerald-300 to-sky-400 rounded-full py-1.5 absolute"
                     style={{
                       left: hobby.left,
                       top: hobby.top,
                     }}
+                    drag
+                    dragConstraints={constraintRef}
                   >
                     <span className="font-medium text-gray-950">
                       {hobby.title}
                     </span>
                     <span>{hobby.emoji}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </Card>
@@ -157,7 +178,9 @@ export const AboutSection = () => {
                 alt="Map showing my location"
                 className="h-full w-full object-cover object-center"
               />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-green-950/30">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-green-950/30">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-20 animate-ping [animation-duration:2s]"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-10"></div>
                 <Image src={smileMemoji} alt="me" className="size-20" />
               </div>
             </Card>
